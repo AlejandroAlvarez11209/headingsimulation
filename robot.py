@@ -1,5 +1,7 @@
 import numpy as np
 
+from rendering import PointsInSpace
+
 
 class Robot:
     def __init__(self, vert_arr, x, y, theta):
@@ -41,7 +43,10 @@ class Robot:
             transformed_point[0] += rot_axis[0]
             transformed_point[1] += rot_axis[1]
 
-            transformed_points.append(transformed_point)
+            transformed_points.append(transformed_point.tolist())
+            
+        # print(f"{transformed_points = }")
+        self.vert_arr = transformed_points
 
     def drive(self, v_left, v_right, dt):
         if v_left == v_right:
@@ -65,3 +70,22 @@ class Robot:
 
     def get_vert_arr(self):
         return self.vert_arr
+
+
+def main():
+    vert_array = [[-1, 1], [1, 1], [1, -1], [-1, -1]]
+    lim_x = [-20, 20]
+    lim_y = [-29, 11]
+    frame_count = 10000
+
+    robot = Robot(vert_array, 0, 9, 0)
+    pis = PointsInSpace(4, lim_x, lim_y)
+    
+    for i in range(frame_count):
+        robot.drive(1, 0.8, 0.1)
+        rendering_array = np.array(robot.get_vert_arr()).T
+        pis.draw_point([rendering_array[0], rendering_array[1]])
+
+
+if __name__ == "__main__":
+    main()
