@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import turtle
-import sys
 
 # Shape class: (array of vertices, center point)
 # Vert_arr(Array): Array of vertices points (Points have an x and y component)
