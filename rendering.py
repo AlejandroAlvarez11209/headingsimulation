@@ -57,7 +57,7 @@ if __name__ == "__main__":
     for j in range(frame_count):
         x_1 = np.cos((j / 100) * np.pi)
         y_1 = np.sin((j / 100) * np.pi)
-        
+
         x_2 = np.cos((j / 100) * np.pi + np.pi)
         y_2 = np.sin((j / 100) * np.pi + np.pi)
 
